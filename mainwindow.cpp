@@ -13,3 +13,13 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
+
+void MainWindow::on_dockWidget_allowedAreasChanged(const Qt::DockWidgetAreas &allowedAreas)
+{
+
+}
+
+void MainWindow::on_dockWidget_windowIconChanged(const QIcon &icon)
+{
+
+}

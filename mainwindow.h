@@ -15,6 +15,11 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
+private slots:
+    void on_dockWidget_allowedAreasChanged(const Qt::DockWidgetAreas &allowedAreas);
+
+    void on_dockWidget_windowIconChanged(const QIcon &icon);
+
 private:
     Ui::MainWindow *ui;
 };
