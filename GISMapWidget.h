@@ -1,0 +1,4 @@
+#ifndef GISMAPWIDGET_H
+#define GISMAPWIDGET_H
+
+#endif // GISMAPWIDGET_H
