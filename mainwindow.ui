@@ -23,6 +23,13 @@
      <height>22</height>
     </rect>
    </property>
+   <widget class="QMenu" name="menu">
+    <property name="title">
+     <string>Меню</string>
+    </property>
+    <addaction name="actionOpen"/>
+   </widget>
+   <addaction name="menu"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
   <widget class="QDockWidget" name="dockWidget">
@@ -47,8 +54,8 @@
          <rect>
           <x>0</x>
           <y>0</y>
-          <width>221</width>
-          <height>381</height>
+          <width>353</width>
+          <height>395</height>
          </rect>
         </property>
         <attribute name="label">
@@ -83,7 +90,7 @@
          <rect>
           <x>0</x>
           <y>0</y>
-          <width>187</width>
+          <width>353</width>
           <height>395</height>
          </rect>
         </property>
@@ -119,8 +126,8 @@
          <rect>
           <x>0</x>
           <y>0</y>
-          <width>199</width>
-          <height>381</height>
+          <width>353</width>
+          <height>395</height>
          </rect>
         </property>
         <attribute name="label">
@@ -155,7 +162,7 @@
          <rect>
           <x>0</x>
           <y>0</y>
-          <width>187</width>
+          <width>353</width>
           <height>395</height>
          </rect>
         </property>
@@ -168,6 +175,11 @@
     </layout>
    </widget>
   </widget>
+  <action name="actionOpen">
+   <property name="text">
+    <string>Открыть проект</string>
+   </property>
+  </action>
  </widget>
  <resources/>
  <connections/>
