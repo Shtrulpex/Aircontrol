@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.16)
 project(Aircontrol)
 
-set(CMAKE_CXX_STANDARD 14)
+set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
 set(CMAKE_AUTOUIC ON)
@@ -15,6 +15,8 @@ find_package(Qt5 COMPONENTS
         Core
         Gui
         Widgets
+        Xml
+        Sql
         REQUIRED)
 
 
@@ -27,7 +29,10 @@ add_executable(Aircontrol
     main.cpp
     mainwindow.cpp
     mainwindow.h
-    mainwindow.ui)
+    mainwindow.ui
+    GISMapWidget.h
+    GISMapWidget.cpp
+    )
 
 target_include_directories(Aircontrol PRIVATE
     ${QGIS_INCLUDE_DIR}
@@ -37,6 +42,8 @@ target_link_libraries(Aircontrol
         Qt5::Core
         Qt5::Gui
         Qt5::Widgets
+        Qt5::Xml
+        Qt5::Sql
         ${GDAL_LIBRARY}
         ${QGIS_LIBRARY}
         )

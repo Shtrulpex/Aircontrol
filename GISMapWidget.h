@@ -12,10 +12,17 @@ class GISMapWidget: public QgsMapCanvas
 
 public:
     explicit GISMapWidget(QWidget* parent = nullptr);
-    //~GISMapWidget();
+    ~GISMapWidget();
 
     void OpenMap();
-    void updateLayers(QList<QgsMapLayer*> layers);
+
+private:
+
+    QgsVectorLayer* earthLayer = new QgsVectorLayer("/home/sofia/4 semestr/SuperProject/"
+                                                    "Related Projects/maps/"
+                                                    "kx-world-land-areas-110-million-SHP/"
+                                                    "world-land-areas-110-million.shp",
+                                                    "earth", "ogr");
 signals:
     void readLayersFromProjRequest(const QString& path, const QgsCoordinateReferenceSystem destCoord);
 };
