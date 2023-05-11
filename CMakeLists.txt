@@ -34,6 +34,13 @@ add_executable(Aircontrol
     GISMapWidget.cpp
     MenuController.h
     MenuController.cpp
+    ./server/fields_count.hpp
+    ./server/getter.hpp
+    ./server/magic_in.hpp
+    ./server/magic_out.hpp
+    ./server/socket.cpp
+    ./server/socket.h
+    ./server/socket.hpp
     )
 
 target_include_directories(Aircontrol PRIVATE
