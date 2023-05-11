@@ -14,12 +14,16 @@ MainWindow::MainWindow(QWidget *parent)
     ui->setupUi(this);
     map = new GISMapWidget(this);
     this->setCentralWidget(map);
+    map->OpenMap(PointsLayer);
+
+    this->addControlPoint(QgsPointXY{50.0, 50.0});
 }
 
 MainWindow::~MainWindow()
 {
     delete ui;
     delete map;
+    delete PointsLayer;
 }
 
 void MainWindow::on_lineEdit_departureCity_textChanged(const QString &arg1)
@@ -53,4 +57,16 @@ void MainWindow::on_listWidget_departureCity_itemClicked(QListWidgetItem *item)
     QgsRectangle rect(distr(gen), distr(gen), distr(gen), distr(gen));
     map->update();
     map->setExtent(rect);
+}
+
+void MainWindow::addControlPoint(const QgsPointXY &point)
+{
+        PointsLayer->startEditing();
+
+        QgsFeature feat;
+        feat.setFields(PointsLayer->fields(), true);
+        //feat.setAttribute("fid", twoPoints.size() - 1);
+        feat.setGeometry(QgsGeometry::fromPointXY(point));
+        PointsLayer->addFeature(feat);
+        PointsLayer->commitChanges();
 }

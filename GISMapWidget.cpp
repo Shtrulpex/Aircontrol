@@ -13,7 +13,7 @@ GISMapWidget::GISMapWidget(QWidget* parent)
     setMapUpdateInterval(500);
     setMinimumSize(600,400);
 
-    OpenMap();
+    //OpenMap();
 }
 
 GISMapWidget::~GISMapWidget()
@@ -21,9 +21,9 @@ GISMapWidget::~GISMapWidget()
     delete earthLayer;
 }
 
-void GISMapWidget::OpenMap()
+void GISMapWidget::OpenMap(QgsVectorLayer* controlPointsLayer)
 {
-    setLayers({earthLayer});
+    setLayers({controlPointsLayer, earthLayer});
     setExtent(earthLayer->extent());
     QgsCoordinateReferenceSystem crs("EPSG:4326");
     setDestinationCrs(crs);
