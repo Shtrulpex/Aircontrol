@@ -16,7 +16,7 @@ MainWindow::MainWindow(QWidget *parent)
     this->setCentralWidget(map);
     map->OpenMap(PointsLayer);
 
-    this->addControlPoint(QgsPointXY{50.0, 50.0});
+    this->addControlPoint(QgsPointXY{-5.755119, 50.057426});
 }
 
 MainWindow::~MainWindow()

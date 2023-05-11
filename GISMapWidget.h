@@ -18,11 +18,7 @@ public:
 
 private:
 
-    QgsVectorLayer* earthLayer = new QgsVectorLayer("/home/sofia/4 semestr/SuperProject/"
-                                                    "Related Projects/maps/"
-                                                    "kx-world-land-areas-110-million-SHP/"
-                                                    "world-land-areas-110-million.shp",
-                                                    "earth", "ogr");
+    QgsVectorLayer* earthLayer = new QgsVectorLayer("/home/ivan/Maps/Maps/kx-world-land-areas-110-million-SHP/world-land-areas-110-million.shp", "earth", "ogr");
 signals:
     void readLayersFromProjRequest(const QString& path, const QgsCoordinateReferenceSystem destCoord);
 };
