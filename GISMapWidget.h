@@ -14,7 +14,7 @@ public:
     explicit GISMapWidget(QWidget* parent = nullptr);
     ~GISMapWidget();
 
-    void OpenMap();
+    void OpenMap(QgsVectorLayer* controlPointsLayer);
 
 private:
 
