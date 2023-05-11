@@ -23,9 +23,9 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
-private slots:
-    void on_lineEdit_departureCity_textChanged(const QString &arg1);
-    void on_listWidget_departureCity_itemClicked(QListWidgetItem *item);
+//private slots:
+//    void on_lineEdit_departureCity_textChanged(const QString &arg1);
+//    void on_listWidget_departureCity_itemClicked(QListWidgetItem *item);
 
 private:
     GISMapWidget* map = nullptr;

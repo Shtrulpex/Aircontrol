@@ -1,11 +1,14 @@
 #include "mainwindow.h"
 #include "./ui_mainwindow.h"
+#include "translator.h"
 
 #include <qgsmapcanvas.h>
 #include <qgsmapsettings.h>
 
 #include <qgsrectangle.h> //for zoom
 #include <random>
+
+#include <iostream>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -16,7 +19,12 @@ MainWindow::MainWindow(QWidget *parent)
     this->setCentralWidget(map);
     map->OpenMap(PointsLayer);
 
-    this->addControlPoint(QgsPointXY{50.0, 50.0});
+    QgsCoordinateReferenceSystem crs("EPSG:4326"); //EPSG:4326
+    map->setDestinationCrs(crs);
+
+    //std::pair<double, double> b = LatLongToMerc(50, 50);
+    //this->addControlPoint(QgsPointXY{b.first, b.second});
+    this->addControlPoint(QgsPointXY{180,80}); //180,80
 }
 
 MainWindow::~MainWindow()
@@ -29,10 +37,11 @@ MainWindow::~MainWindow()
 void MainWindow::on_lineEdit_departureCity_textChanged(const QString &arg1)
 {
     ui->listWidget_departureCity->clear();
-
+    /*
     QStringList names;
     names.append("smth");
     names.append("smth2");
+    */
     ui->listWidget_departureCity->addItems(names);
 
     ui->listWidget_departureCity->addItem(arg1);
