@@ -32,6 +32,8 @@ add_executable(Aircontrol
     mainwindow.ui
     GISMapWidget.h
     GISMapWidget.cpp
+    MenuController.h
+    MenuController.cpp
     )
 
 target_include_directories(Aircontrol PRIVATE

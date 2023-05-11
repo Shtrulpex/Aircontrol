@@ -47,14 +47,14 @@
         </size>
        </property>
        <property name="currentIndex">
-        <number>3</number>
+        <number>0</number>
        </property>
        <widget class="QWidget" name="page">
         <property name="geometry">
          <rect>
           <x>0</x>
           <y>0</y>
-          <width>353</width>
+          <width>325</width>
           <height>395</height>
          </rect>
         </property>
@@ -67,19 +67,12 @@
            <item>
             <layout class="QHBoxLayout" name="horizontalLayout">
              <item>
-              <widget class="QLabel" name="label">
-               <property name="text">
-                <string>Город отправления</string>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <widget class="QLineEdit" name="lineEdit"/>
+              <widget class="QLineEdit" name="lineEdit_departureCity"/>
              </item>
             </layout>
            </item>
            <item>
-            <widget class="QListWidget" name="listWidget"/>
+            <widget class="QListWidget" name="listWidget_departureCity"/>
            </item>
           </layout>
          </item>
@@ -90,7 +83,7 @@
          <rect>
           <x>0</x>
           <y>0</y>
-          <width>353</width>
+          <width>325</width>
           <height>395</height>
          </rect>
         </property>
@@ -103,19 +96,12 @@
            <item>
             <layout class="QHBoxLayout" name="horizontalLayout_3">
              <item>
-              <widget class="QLabel" name="label_3">
-               <property name="text">
-                <string>Самолет</string>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <widget class="QLineEdit" name="lineEdit_3"/>
+              <widget class="QLineEdit" name="lineEdit_plane"/>
              </item>
             </layout>
            </item>
            <item>
-            <widget class="QListWidget" name="listWidget_3"/>
+            <widget class="QListWidget" name="listWidget_plane"/>
            </item>
           </layout>
          </item>
@@ -126,7 +112,7 @@
          <rect>
           <x>0</x>
           <y>0</y>
-          <width>353</width>
+          <width>325</width>
           <height>395</height>
          </rect>
         </property>
@@ -139,19 +125,12 @@
            <item>
             <layout class="QHBoxLayout" name="horizontalLayout_2">
              <item>
-              <widget class="QLabel" name="label_2">
-               <property name="text">
-                <string>Город прибытия</string>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <widget class="QLineEdit" name="lineEdit_2"/>
+              <widget class="QLineEdit" name="lineEdit_arrivalCity"/>
              </item>
             </layout>
            </item>
            <item>
-            <widget class="QListWidget" name="listWidget_2"/>
+            <widget class="QListWidget" name="listWidget_arrivalCity"/>
            </item>
           </layout>
          </item>
@@ -162,7 +141,7 @@
          <rect>
           <x>0</x>
           <y>0</y>
-          <width>353</width>
+          <width>325</width>
           <height>395</height>
          </rect>
         </property>
