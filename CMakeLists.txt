@@ -41,6 +41,7 @@ add_executable(Aircontrol
     ./server/socket.cpp
     ./server/socket.h
     ./server/socket.hpp
+    ./server/database.h
     )
 
 target_include_directories(Aircontrol PRIVATE
