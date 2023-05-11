@@ -1,0 +1,5 @@
+<RCC>
+    <qresource prefix="/">
+        <file>land.shp</file>
+    </qresource>
+</RCC>
