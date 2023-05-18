@@ -21,20 +21,9 @@ private slots:
     void on_lineEdit_departureCity_textChanged(const QString &arg1);
     void on_listWidget_departureCity_itemClicked(QListWidgetItem *item);
 
+signals:
+    void ItemClicked(QgsRectangle rect);
 private:
-    //GISMapWidget* map = nullptr;
     Ui::MainWindow *ui;
-
-    //QgsVectorLayer* PointsLayer = new QgsVectorLayer("Point", "Points", "memory");
-
-
-    //void addControlPoint(const QgsPointXY &point);
 };
 #endif // MAINWINDOW_H
-
-
-/*
- * Этот файлик становится WindowController, в нем убирается GISMapWidget, PointsLayer
- * Создается отдельный CetralWidget хранящий MapWidget и MapController
- *
- */

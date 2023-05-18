@@ -78,9 +78,11 @@ void WindowController::on_listWidget_departureCity_itemClicked(QListWidgetItem *
     std::uniform_int_distribution<> distr(-50, 50); // define the range
 
     QgsRectangle rect(distr(gen), distr(gen), distr(gen), distr(gen));
+    emit ItemClicked(rect);
     //map->update();
     //map->setExtent(rect);
 }
+<<<<<<< HEAD
 
 /*void WindowController::addControlPoint(const QgsPointXY &point)
 {
@@ -96,3 +98,5 @@ void WindowController::on_listWidget_departureCity_itemClicked(QListWidgetItem *
         PointsLayer->commitChanges();
 }
 */
+=======
+>>>>>>> origin/develop-sofia

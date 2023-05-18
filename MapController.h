@@ -21,6 +21,9 @@ public:
 
     GISMapWidget* GetMap() const;
 
+public slots:
+    void ScaleToRect(QgsRectangle rect);
+
 private:
 
     GISMapWidget* map = nullptr;

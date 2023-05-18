@@ -35,15 +35,8 @@ GISMapWidget* MapController::GetMap() const
 {
     return map;
 }
-/*MenuController::departureCity_itemClicked(QListWidgetItem *item)
-{
-
-}
-
-MenuController::departureCity_textChanged(const QString &text)
-{
-    QStringList names;
-    names.append("smth");
-    names.append("smth2");
-
-}*/
+ void MapController::ScaleToRect(QgsRectangle rect)
+ {
+     map->update();
+     map->setExtent(rect);
+ }
