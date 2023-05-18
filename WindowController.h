@@ -2,13 +2,7 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
-#include <qgsmapcanvas.h>
-#include <qgsvectorlayer.h>
-
 #include "./ui_mainwindow.h"
-#include <qgsmapcanvas.h>
-#include <qgsmapsettings.h>
-
 #include "GISMapWidget.h"
 
 QT_BEGIN_NAMESPACE
@@ -20,7 +14,7 @@ class WindowController : public QMainWindow
     Q_OBJECT
 
 public:
-    WindowController(QWidget *parent = nullptr);
+    WindowController(GISMapWidget* map, QWidget *parent = nullptr);
     ~WindowController();
 
 private slots:
@@ -28,13 +22,13 @@ private slots:
     void on_listWidget_departureCity_itemClicked(QListWidgetItem *item);
 
 private:
-    GISMapWidget* map = nullptr;
+    //GISMapWidget* map = nullptr;
     Ui::MainWindow *ui;
 
-    QgsVectorLayer* PointsLayer = new QgsVectorLayer("Point", "Points", "memory");
+    //QgsVectorLayer* PointsLayer = new QgsVectorLayer("Point", "Points", "memory");
 
 
-    void addControlPoint(const QgsPointXY &point);
+    //void addControlPoint(const QgsPointXY &point);
 };
 #endif // MAINWINDOW_H
 

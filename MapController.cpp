@@ -1,7 +1,3 @@
-/*
-в мейн виндоу
-коннект (имя объекта (книпки в юи), действие, указатель на кого, какая функция)
-*/
 #include "MapController.h"
 
 MapController::MapController()
@@ -33,6 +29,11 @@ void MapController::addControlPoint(const QgsPointXY &point)
         feat.setGeometry(QgsGeometry::fromPointXY(point));
         PointsLayer->addFeature(feat);
         PointsLayer->commitChanges();
+}
+
+GISMapWidget* MapController::GetMap() const
+{
+    return map;
 }
 /*MenuController::departureCity_itemClicked(QListWidgetItem *item)
 {

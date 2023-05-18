@@ -11,14 +11,17 @@
 
 #include "GISMapWidget.h"
 
-#include "WindowController.h"
 
 class MapController:public QObject
 {
     Q_OBJECT
-private:
+public:
     MapController();
     ~MapController();
+
+    GISMapWidget* GetMap() const;
+
+private:
 
     GISMapWidget* map = nullptr;
     QgsVectorLayer* PointsLayer = new QgsVectorLayer("Point", "Points", "memory");

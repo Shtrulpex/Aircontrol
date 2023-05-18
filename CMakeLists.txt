@@ -34,6 +34,8 @@ add_executable(Aircontrol
     GISMapWidget.cpp
     MapController.h
     MapController.cpp
+    CentralWidget.cpp
+    CentralWidget.h
 
     ./server/fields_count.hpp
     ./server/getter.hpp

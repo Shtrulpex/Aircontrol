@@ -7,24 +7,23 @@
 #include <qgsrectangle.h> //for zoom
 #include <random>
 
-#include <iostream>
-
-WindowController::WindowController(QWidget *parent)
+WindowController::WindowController(GISMapWidget* map, QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-    map = new GISMapWidget(this);
+    //map = new GISMapWidget(this);
     this->setCentralWidget(map);
-    map->OpenMap(PointsLayer);
+    //map->OpenMap(PointsLayer);
 
 
-    QgsCoordinateReferenceSystem crs("EPSG:4326"); //EPSG:4326
-    map->setDestinationCrs(crs);
+    //QgsCoordinateReferenceSystem crs("EPSG:4326"); //EPSG:4326
+    //map->setDestinationCrs(crs);
 
     //std::pair<double, double> b = LatLongToMerc(50, 50);
     //this->addControlPoint(QgsPointXY{b.first, b.second});
-    this->addControlPoint(QgsPointXY{180,80}); //180,80
+    //this->addControlPoint(QgsPointXY{180,80}); //180,80
+    this->show();
 }
 
 WindowController::~WindowController()
@@ -62,11 +61,11 @@ void WindowController::on_listWidget_departureCity_itemClicked(QListWidgetItem *
     std::uniform_int_distribution<> distr(-50, 50); // define the range
 
     QgsRectangle rect(distr(gen), distr(gen), distr(gen), distr(gen));
-    map->update();
-    map->setExtent(rect);
+    //map->update();
+    //map->setExtent(rect);
 }
 
-void WindowController::addControlPoint(const QgsPointXY &point)
+/*void WindowController::addControlPoint(const QgsPointXY &point)
 {
         PointsLayer->startEditing();
 
@@ -77,3 +76,4 @@ void WindowController::addControlPoint(const QgsPointXY &point)
         PointsLayer->addFeature(feat);
         PointsLayer->commitChanges();
 }
+*/
