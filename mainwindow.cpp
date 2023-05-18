@@ -6,11 +6,28 @@
 
 #include <qgsrectangle.h> //for zoom
 #include <random>
+#include "server/socket.h"
+#include "server/data_struct.h"
+#include <iostream>
+#include <vector>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
 {
+    ////////////////////////
+    Socket sock;
+    PlaneQuery p;
+    sock.connect("127.0.0.1", 5433);
+    sock << PLANE;
+    sock << p;
+    std::cout << "connected, sent" << std::endl;
+    std::vector<Plane> airs;
+    sock >> airs;
+    std::cout << "recieved" << std::endl;
+    std::cout << airs.size() << std::endl;
+    sock.close();
+    ////////////////////////
     ui->setupUi(this);
     map = new GISMapWidget(this);
     this->setCentralWidget(map);
@@ -67,6 +84,8 @@ void MainWindow::addControlPoint(const QgsPointXY &point)
         feat.setFields(PointsLayer->fields(), true);
         //feat.setAttribute("fid", twoPoints.size() - 1);
         feat.setGeometry(QgsGeometry::fromPointXY(point));
+
+        feat.setGeometry(QgsGeometry::fromPolylineXY({point, QgsPointXY{0,0}, QgsPointXY{50,0}}));
         PointsLayer->addFeature(feat);
         PointsLayer->commitChanges();
 }

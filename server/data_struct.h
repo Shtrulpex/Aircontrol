@@ -1,10 +1,7 @@
-#ifndef DB_INTERFACE_H
-#define DB_INTERFACE_H
+#ifndef DATA_STRUCT_H
+#define DATA_STRUCT_H
 
 #include <string>
-
-
-const std::string DB_FILEPATH = "../Aircontrol-server/resources/air-planner.sqlite";
 
 
 enum QueryType
@@ -13,7 +10,7 @@ enum QueryType
     AIRPORT = 1,
     PATH_LEN = 2,
     PATH_2D = 3,
-    PATH_3D = 4
+//  PATH_3D = 4
 };
 
 
@@ -36,7 +33,7 @@ struct Airport
 {
     Point loc;
     double runway_length{0.0};
-    double gmt{0.0}; // нужно ли привязывать к аэропорту или лучше к городу? (внимание, это дабл)
+    double gmt{0.0};
     std::string iata_code{""};
     std::string icao_code{""};
     std::string iso_code{""};
@@ -51,8 +48,8 @@ struct Plane
     double flight_length{0.0};
     double flight_height{0.0};
     double velocity{0.0};
-    double cargo_weight{0.0};
-    double required_runway_length{0.0};  // отклонился от договорённости
+    double weight_capacity{0.0};
+    double required_runway_length{0.0};
     Name name;
 };
 
@@ -77,14 +74,10 @@ struct PlaneQuery
     double min_flight_length{0.0};
     double min_flight_height{0.0};
     double min_velocity{0.0};
-    double max_required_runway_length{0.0};  // соответственно и тут поменял
-    double min_cargo_weight{0.0};
+    double min_weight_capacity{0.0};
+    double max_required_runway_length{0.0};
     Name name;
 };
 
 
-std::vector<Airport> run_query(const AirportQuery& query, const std::string& db_filepath=DB_FILEPATH);
-std::vector<Plane> run_query(const PlaneQuery& query, const std::string& db_filepath=DB_FILEPATH);
-
-
-#endif // DB_INTERFACE_H
+#endif // DATA_STRUCT_H
