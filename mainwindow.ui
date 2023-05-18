@@ -54,8 +54,8 @@
          <rect>
           <x>0</x>
           <y>0</y>
-          <width>325</width>
-          <height>395</height>
+          <width>276</width>
+          <height>426</height>
          </rect>
         </property>
         <attribute name="label">
@@ -83,8 +83,8 @@
          <rect>
           <x>0</x>
           <y>0</y>
-          <width>325</width>
-          <height>395</height>
+          <width>276</width>
+          <height>426</height>
          </rect>
         </property>
         <attribute name="label">
@@ -112,8 +112,8 @@
          <rect>
           <x>0</x>
           <y>0</y>
-          <width>325</width>
-          <height>395</height>
+          <width>276</width>
+          <height>426</height>
          </rect>
         </property>
         <attribute name="label">
@@ -135,19 +135,6 @@
           </layout>
          </item>
         </layout>
-       </widget>
-       <widget class="QWidget" name="page_4">
-        <property name="geometry">
-         <rect>
-          <x>0</x>
-          <y>0</y>
-          <width>325</width>
-          <height>395</height>
-         </rect>
-        </property>
-        <attribute name="label">
-         <string>Погода</string>
-        </attribute>
        </widget>
       </widget>
      </item>
