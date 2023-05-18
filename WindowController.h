@@ -15,17 +15,17 @@ QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
 QT_END_NAMESPACE
 
-class MainWindow : public QMainWindow
+class WindowController : public QMainWindow
 {
     Q_OBJECT
 
 public:
-    MainWindow(QWidget *parent = nullptr);
-    ~MainWindow();
+    WindowController(QWidget *parent = nullptr);
+    ~WindowController();
 
-//private slots:
-//    void on_lineEdit_departureCity_textChanged(const QString &arg1);
-//    void on_listWidget_departureCity_itemClicked(QListWidgetItem *item);
+private slots:
+    void on_lineEdit_departureCity_textChanged(const QString &arg1);
+    void on_listWidget_departureCity_itemClicked(QListWidgetItem *item);
 
 private:
     GISMapWidget* map = nullptr;
@@ -37,3 +37,10 @@ private:
     void addControlPoint(const QgsPointXY &point);
 };
 #endif // MAINWINDOW_H
+
+
+/*
+ * Этот файлик становится WindowController, в нем убирается GISMapWidget, PointsLayer
+ * Создается отдельный CetralWidget хранящий MapWidget и MapController
+ *
+ */

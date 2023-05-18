@@ -1,6 +1,5 @@
-#include "mainwindow.h"
+#include "WindowController.h"
 #include "./ui_mainwindow.h"
-#include "translator.h"
 
 #include <qgsmapcanvas.h>
 #include <qgsmapsettings.h>
@@ -10,7 +9,7 @@
 
 #include <iostream>
 
-MainWindow::MainWindow(QWidget *parent)
+WindowController::WindowController(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
 {
@@ -18,6 +17,7 @@ MainWindow::MainWindow(QWidget *parent)
     map = new GISMapWidget(this);
     this->setCentralWidget(map);
     map->OpenMap(PointsLayer);
+
 
     QgsCoordinateReferenceSystem crs("EPSG:4326"); //EPSG:4326
     map->setDestinationCrs(crs);
@@ -27,27 +27,25 @@ MainWindow::MainWindow(QWidget *parent)
     this->addControlPoint(QgsPointXY{180,80}); //180,80
 }
 
-MainWindow::~MainWindow()
+WindowController::~WindowController()
 {
     delete ui;
-    delete map;
-    delete PointsLayer;
 }
 
-void MainWindow::on_lineEdit_departureCity_textChanged(const QString &arg1)
+void WindowController::on_lineEdit_departureCity_textChanged(const QString &arg1)
 {
     ui->listWidget_departureCity->clear();
-    /*
+
     QStringList names;
     names.append("smth");
     names.append("smth2");
-    */
+
     ui->listWidget_departureCity->addItems(names);
 
     ui->listWidget_departureCity->addItem(arg1);
 }
 
-void MainWindow::on_listWidget_departureCity_itemClicked(QListWidgetItem *item)
+void WindowController::on_listWidget_departureCity_itemClicked(QListWidgetItem *item)
 {
     //Меняем цвет, хотя нафиг надо
     if(item->backgroundColor() == Qt::blue)
@@ -68,7 +66,7 @@ void MainWindow::on_listWidget_departureCity_itemClicked(QListWidgetItem *item)
     map->setExtent(rect);
 }
 
-void MainWindow::addControlPoint(const QgsPointXY &point)
+void WindowController::addControlPoint(const QgsPointXY &point)
 {
         PointsLayer->startEditing();
 

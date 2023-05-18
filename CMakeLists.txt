@@ -27,14 +27,22 @@ set(CMAKE_INCLUDE_CURRENT_DIR ON)
 
 add_executable(Aircontrol
     main.cpp
-    mainwindow.cpp
-    mainwindow.h
+    WindowController.cpp
+    WindowController.h
     mainwindow.ui
     GISMapWidget.h
     GISMapWidget.cpp
-    MenuController.h
-    MenuController.cpp
-    translator.h
+    MapController.h
+    MapController.cpp
+
+    ./server/fields_count.hpp
+    ./server/getter.hpp
+    ./server/magic_in.hpp
+    ./server/magic_out.hpp
+    ./server/socket.cpp
+    ./server/socket.h
+    ./server/socket.hpp
+
     )
 
 target_include_directories(Aircontrol PRIVATE
