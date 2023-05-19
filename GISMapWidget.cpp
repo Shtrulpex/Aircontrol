@@ -12,8 +12,6 @@ GISMapWidget::GISMapWidget(QWidget* parent)
     setPreviewJobsEnabled(true);
     setMapUpdateInterval(500);
     setMinimumSize(600,400);
-
-    //OpenMap();
 }
 
 GISMapWidget::~GISMapWidget()

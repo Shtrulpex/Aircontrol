@@ -5,7 +5,7 @@ MapController::MapController()
     map = new GISMapWidget();
     map->OpenMap(PointsLayer);
 
-    QgsCoordinateReferenceSystem crs("EPSG:4326"); //EPSG:4326
+    QgsCoordinateReferenceSystem crs("EPSG:4326");
     map->setDestinationCrs(crs);
 
     //std::pair<double, double> b = LatLongToMerc(50, 50);
@@ -25,7 +25,6 @@ void MapController::addControlPoint(const QgsPointXY &point)
 
         QgsFeature feat;
         feat.setFields(PointsLayer->fields(), true);
-        //feat.setAttribute("fid", twoPoints.size() - 1);
         feat.setGeometry(QgsGeometry::fromPointXY(point));
         PointsLayer->addFeature(feat);
         PointsLayer->commitChanges();

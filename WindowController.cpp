@@ -62,6 +62,4 @@ void WindowController::on_listWidget_departureCity_itemClicked(QListWidgetItem *
 
     QgsRectangle rect(distr(gen), distr(gen), distr(gen), distr(gen));
     emit ItemClicked(rect);
-    //map->update();
-    //map->setExtent(rect);
 }
