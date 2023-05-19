@@ -10,6 +10,7 @@
 #include "server/data_struct.h"
 #include <iostream>
 #include <vector>
+#include "DataController.h"
 
 MainWindow::MainWindow(GISMapWidget* map, QWidget *parent)
     : QMainWindow(parent)
@@ -27,40 +28,14 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
-QStringList MainWindow::ServerCommunication(const QString &text)
-{
-    AirportQuery p;
-    p.name.eng = text.toStdString();//ui->lineEdit_departureCity->text().toStdString();
-    ui->listWidget_departureCity->clear();
-
-    Socket sock;
-    sock.connect("127.0.0.1", 5433);
-    sock << AIRPORT;
-    sock << p;
-    std::vector<Airport> airs;
-    sock >> airs;
-    sock.close();
-
-    QStringList names;
-    for(auto i: airs)
-    {
-        names.append(QString::fromStdString(i.city.eng + " " + i.name.rus));
-        std::cout << i.city.rus << " " << i.name.rus << std::endl;
-    }
-
-    return names;
-}
-
 
 
 void MainWindow::on_lineEdit_departureCity_textChanged(const QString &arg1)
 {
-    //QStringList names = ServerCommunication(arg1); !!!!!!!!!!!!
-    std::cout << "///////////////////" << std::endl;
-
-    //ui->listWidget_departureCity->addItems(names); !!!!!!!!!!!!
-
-    ui->listWidget_departureCity->addItem(arg1);
+    DataController dc;
+    QStringList names = dc.getPlanes(arg1);
+    ui->listWidget_departureCity->clear();
+    ui->listWidget_departureCity->addItems(names);
 }
 
 void MainWindow::on_lineEdit_plane_textChanged(const QString &arg1)
