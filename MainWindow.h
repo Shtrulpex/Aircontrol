@@ -5,6 +5,7 @@
 #include "./ui_mainwindow.h"
 #include "GISMapWidget.h"
 #include "./server/data_struct.h"
+#include "DataController.h"
 
 #include "DataController.h"
 
@@ -42,7 +43,8 @@ signals:
 private: 
     QStringList ServerCommunication(const QString &text);
     Ui::MainWindow *ui;
-    DataController data;
+    DataController dc;
+
 
     //void lineEdit_plane_changed(const QString &arg1);
 

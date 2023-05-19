@@ -32,7 +32,8 @@ MainWindow::~MainWindow()
 
 void MainWindow::on_lineEdit_departureCity_textChanged(const QString &arg1)
 {
-    QStringList names = data.getAirports(arg1);
+
+    QStringList names = dc.getAirports(arg1);
     ui->listWidget_departureCity->clear();
     ui->listWidget_departureCity->addItems(names);
 }
@@ -40,41 +41,36 @@ void MainWindow::on_lineEdit_departureCity_textChanged(const QString &arg1)
 void MainWindow::on_lineEdit_plane_textChanged(const QString &arg1)
 {
 
-    QStringList names = data.getPlanes(arg1);
-    ui->listWidget_departureCity->clear();
-    ui->listWidget_departureCity->addItems(names);
+    QStringList names = dc.getPlanes(arg1);
+    ui->listWidget_plane->clear();
+    ui->listWidget_plane->addItems(names);
 
 }
 
 void MainWindow::on_lineEdit_arrivalCity_textChanged(const QString &arg1)
 {
-    QStringList cities = data.getDestination();
-    ui->listWidget_departureCity->clear();
-    ui->listWidget_arrivalCity->addItems(cities);
+    //QStringList cities = dc.getDestination();
+    //ui->listWidget_departureCity->clear();
+    //ui->listWidget_arrivalCity->addItems(cities);
 }
 
 void MainWindow::on_listWidget_plane_itemClicked(QListWidgetItem *item)
 {
-
+    dc.setPlane(item->text());
+    ui->lineEdit_plane->setText(item->text());
 }
 
 void MainWindow::on_listWidget_arrivalCity_itemClicked(QListWidgetItem *item)
 {
-
+    dc.setDestination(item->text());
     const QgsPoint point{0.,0.};
     emit DrawPoint(point);
 }
 
 void MainWindow::on_listWidget_departureCity_itemClicked(QListWidgetItem *item)
 {
-    //Меняем цвет, хотя нафиг надо
-    if(item->backgroundColor() == Qt::blue)
-        item->setBackgroundColor(Qt::white);
-    else
-        item->setBackgroundColor(Qt::blue);
+    dc.setStart(item->text());
 
-    //меняем сам текст
-    ui->listWidget_departureCity->addItem("Ты кликнул на что-то");
 
     // generating random coordinates
     std::random_device rd; // obtain a random number from hardware
@@ -82,7 +78,7 @@ void MainWindow::on_listWidget_departureCity_itemClicked(QListWidgetItem *item)
     std::uniform_int_distribution<> distr(-50, 50); // define the range
 
     QgsRectangle rect(distr(gen), distr(gen), distr(gen), distr(gen));
-    emit ItemClicked(rect);
+    //emit ItemClicked(rect);
     emit DrawPoint(QgsPoint{20., 20.});
 }
 

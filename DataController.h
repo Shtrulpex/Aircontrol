@@ -23,6 +23,7 @@ public:
     Plane getTransport() {return plane;}
     void setPlane(const QString& text);
     void setDestination(const QString& text);
+    void setStart(const QString& text);
 };
 
 #endif // DATACONTROLLER_H

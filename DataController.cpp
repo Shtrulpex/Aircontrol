@@ -39,3 +39,29 @@ QStringList DataController::getPlanes(const QString &text)
 
     return names;
 }
+
+void DataController::setPlane(const QString &text)
+{
+    PlaneQuery p;
+    p.name.eng = text.toStdString();
+
+    Socket sock;
+    sock.connect(ip.toStdString(), port);
+    sock << PLANE;
+    sock << p;
+    std::vector<Plane> planes;
+    sock >> planes;
+    sock.close();
+    if(!planes.empty())
+        plane = planes[planes.size()-1];
+}
+
+void DataController::setDestination(const QString &text)
+{
+
+}
+
+void DataController::setStart(const QString &text)
+{
+
+}
