@@ -6,6 +6,8 @@
 #include "GISMapWidget.h"
 #include "./server/data_struct.h"
 
+#include "DataController.h"
+
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
 QT_END_NAMESPACE
@@ -40,6 +42,7 @@ signals:
 private: 
     QStringList ServerCommunication(const QString &text);
     Ui::MainWindow *ui;
+    DataController data;
 
     //void lineEdit_plane_changed(const QString &arg1);
 

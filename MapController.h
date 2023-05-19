@@ -13,6 +13,7 @@
 #include "./server/data_struct.h"
 
 
+
 class MapController:public QObject
 {
     Q_OBJECT

@@ -56,15 +56,14 @@ GISMapWidget* MapController::GetMap() const
 
  void MapController::MapDrawRoot(std::vector<Point> &root)
  {
-     RootLayer->startEditing();
-
-     QgsPoint point{10.,10.};
+     PointsLayer->startEditing();
+     QgsPointXY point{20.0, 20.0};
      QgsFeature feat;
-     feat.setFields(RootLayer->fields(), true);
-     //feat.setAttribute("fid", twoPoints.size() - 1);
-     //feat.setGeometry(QgsGeometry::fromPointXY(point));
+     feat.setFields(PointsLayer->fields(), true);
+             //feat.setAttribute("fid", twoPoints.size() - 1);
+     feat.setGeometry(QgsGeometry::fromPointXY(point));
 
-     feat.setGeometry(QgsGeometry::fromPolyline({point, QgsPoint{20,20}}));
-     RootLayer->addFeature(feat);
-     RootLayer->commitChanges();
+     feat.setGeometry(QgsGeometry::fromPolylineXY({point, QgsPointXY{0,0}, QgsPointXY{50,0}}));
+     PointsLayer->addFeature(feat);
+     PointsLayer->commitChanges();
  }
