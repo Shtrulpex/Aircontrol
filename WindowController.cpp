@@ -15,19 +15,6 @@ WindowController::WindowController(GISMapWidget* map, QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
 {
-    ////////////////////////
-    Socket sock;
-    PlaneQuery p;
-    sock.connect("127.0.0.1", 5433);
-    sock << PLANE;
-    sock << p;
-    std::cout << "connected, sent" << std::endl;
-    std::vector<Plane> airs;
-    sock >> airs;
-    std::cout << "recieved" << std::endl;
-    std::cout << airs.size() << std::endl;
-    sock.close();
-    ////////////////////////
     ui->setupUi(this);
     //map = new GISMapWidget(this);
     this->setCentralWidget(map);
@@ -50,11 +37,27 @@ WindowController::~WindowController()
 
 void WindowController::on_lineEdit_departureCity_textChanged(const QString &arg1)
 {
+    AirportQuery p;
+
+    p.name.eng = arg1.toStdString();//ui->lineEdit_departureCity->text().toStdString();
     ui->listWidget_departureCity->clear();
 
+    Socket sock;
+    sock.connect("127.0.0.1", 5433);
+    sock << AIRPORT;
+    sock << p;
+    std::vector<Airport> airs;
+    sock >> airs;
+    sock.close();
+
     QStringList names;
-    names.append("smth");
-    names.append("smth2");
+    for(auto i: airs)
+    {
+        names.append(QString::fromStdString(i.city.eng + " " + i.name.rus));
+        std::cout << i.city.rus << " " << i.name.rus << std::endl;
+    }
+
+    std::cout << "///////////////////" << std::endl;
 
     ui->listWidget_departureCity->addItems(names);
 
@@ -82,21 +85,3 @@ void WindowController::on_listWidget_departureCity_itemClicked(QListWidgetItem *
     //map->update();
     //map->setExtent(rect);
 }
-<<<<<<< HEAD
-
-/*void WindowController::addControlPoint(const QgsPointXY &point)
-{
-        PointsLayer->startEditing();
-
-        QgsFeature feat;
-        feat.setFields(PointsLayer->fields(), true);
-        //feat.setAttribute("fid", twoPoints.size() - 1);
-        feat.setGeometry(QgsGeometry::fromPointXY(point));
-
-        feat.setGeometry(QgsGeometry::fromPolylineXY({point, QgsPointXY{0,0}, QgsPointXY{50,0}}));
-        PointsLayer->addFeature(feat);
-        PointsLayer->commitChanges();
-}
-*/
-=======
->>>>>>> origin/develop-sofia
