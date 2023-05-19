@@ -4,6 +4,7 @@
 #include <QMainWindow>
 #include "./ui_mainwindow.h"
 #include "GISMapWidget.h"
+#include "./server/data_struct.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -29,9 +30,12 @@ private slots:
 
     void on_listWidget_arrivalCity_itemClicked(QListWidgetItem *item);
 
+    void on_MakeRootButton_clicked();
+
 signals:
     void ItemClicked(QgsRectangle rect);
     void DrawPoint(const QgsPointXY &point);
+    void DrawRoot(std::vector<Point>& root);
 
 private: 
     QStringList ServerCommunication(const QString &text);

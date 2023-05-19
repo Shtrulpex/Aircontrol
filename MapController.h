@@ -10,6 +10,7 @@
 #include <qgsmapsettings.h>
 
 #include "GISMapWidget.h"
+#include "./server/data_struct.h"
 
 
 class MapController:public QObject
@@ -24,11 +25,13 @@ public:
 public slots:
     void ScaleToRect(QgsRectangle rect);
     void DrawPoint(const QgsPointXY &point);
+    void MapDrawRoot(std::vector<Point>& root);
 
 private:
 
     GISMapWidget* map = nullptr;
     QgsVectorLayer* PointsLayer = new QgsVectorLayer("Point", "Points", "memory");
+    QgsVectorLayer* RootLayer = new QgsVectorLayer("LineString", "line", "memory");
 
     void addControlPoint(const QgsPointXY &point);
     void ClearPoint(const QgsPoint &point);
