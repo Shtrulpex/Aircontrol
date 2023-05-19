@@ -31,7 +31,7 @@ private:
 
     GISMapWidget* map = nullptr;
     QgsVectorLayer* PointsLayer = new QgsVectorLayer("Point", "Points", "memory");
-    QgsVectorLayer* RootLayer = new QgsVectorLayer("LineString", "line", "memory");
+    QgsVectorLayer* RootLayer = new QgsVectorLayer("linestring", "line", "memory");
 
     void addControlPoint(const QgsPointXY &point);
     void ClearPoint(const QgsPoint &point);

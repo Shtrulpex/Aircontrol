@@ -4,6 +4,7 @@ MapController::MapController()
 {
     map = new GISMapWidget();
     map->OpenMap(PointsLayer);
+    map->OpenMap(RootLayer);
 
     QgsCoordinateReferenceSystem crs("EPSG:4326");
     map->setDestinationCrs(crs);
@@ -13,6 +14,7 @@ MapController::~MapController()
 {
     delete map;
     delete PointsLayer;
+    delete RootLayer;
 }
 
 void MapController::addControlPoint(const QgsPointXY &point)
