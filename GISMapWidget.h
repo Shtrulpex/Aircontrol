@@ -18,7 +18,10 @@ public:
 
 private:
 
-    QgsVectorLayer* earthLayer = new QgsVectorLayer("/home/ivan/Maps/Maps/kx-world-land-areas-110-million-SHP/world-land-areas-110-million.shp",
+    QgsVectorLayer* earthLayer = new QgsVectorLayer("/home/sofia/4 semestr/SuperProject"
+                                                    "/Related Projects/MapExample"
+                                                    "/kx-world-land-areas-110-million-SHP"
+                                                    "/world-land-areas-110-million.shp",
                                                     "earth", "ogr");
 
 signals:

@@ -16,17 +16,9 @@ WindowController::WindowController(GISMapWidget* map, QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-    //map = new GISMapWidget(this);
     this->setCentralWidget(map);
-    //map->OpenMap(PointsLayer);
 
-
-    //QgsCoordinateReferenceSystem crs("EPSG:4326"); //EPSG:4326
-    //map->setDestinationCrs(crs);
-
-    //std::pair<double, double> b = LatLongToMerc(50, 50);
-    //this->addControlPoint(QgsPointXY{b.first, b.second});
-    //this->addControlPoint(QgsPointXY{180,80}); //180,80
+    //connect(ui->lineEdit_plane, &QAction::changed, this, &WindowController::lineEdit_plane_changed);
     this->show();
 }
 
@@ -35,11 +27,10 @@ WindowController::~WindowController()
     delete ui;
 }
 
-void WindowController::on_lineEdit_departureCity_textChanged(const QString &arg1)
+QStringList WindowController::ServerCommunication(const QString &text)
 {
     AirportQuery p;
-
-    p.name.eng = arg1.toStdString();//ui->lineEdit_departureCity->text().toStdString();
+    p.name.eng = text.toStdString();//ui->lineEdit_departureCity->text().toStdString();
     ui->listWidget_departureCity->clear();
 
     Socket sock;
@@ -57,9 +48,15 @@ void WindowController::on_lineEdit_departureCity_textChanged(const QString &arg1
         std::cout << i.city.rus << " " << i.name.rus << std::endl;
     }
 
+    return names;
+}
+
+void WindowController::on_lineEdit_departureCity_textChanged(const QString &arg1)
+{
+    //QStringList names = ServerCommunication(arg1); !!!!!!!!!!!!
     std::cout << "///////////////////" << std::endl;
 
-    ui->listWidget_departureCity->addItems(names);
+    //ui->listWidget_departureCity->addItems(names); !!!!!!!!!!!!
 
     ui->listWidget_departureCity->addItem(arg1);
 }
@@ -83,3 +80,4 @@ void WindowController::on_listWidget_departureCity_itemClicked(QListWidgetItem *
     QgsRectangle rect(distr(gen), distr(gen), distr(gen), distr(gen));
     emit ItemClicked(rect);
 }
+

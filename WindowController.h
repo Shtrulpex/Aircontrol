@@ -23,7 +23,11 @@ private slots:
 
 signals:
     void ItemClicked(QgsRectangle rect);
-private:
+private: 
+    QStringList ServerCommunication(const QString &text);
     Ui::MainWindow *ui;
+
+    //void lineEdit_plane_changed(const QString &arg1);
+
 };
 #endif // MAINWINDOW_H
