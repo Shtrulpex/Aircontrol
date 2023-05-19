@@ -47,7 +47,7 @@
         </size>
        </property>
        <property name="currentIndex">
-        <number>0</number>
+        <number>2</number>
        </property>
        <widget class="QWidget" name="page">
         <property name="geometry">
@@ -133,6 +133,13 @@
             <widget class="QListWidget" name="listWidget_arrivalCity"/>
            </item>
           </layout>
+         </item>
+         <item>
+          <widget class="QPushButton" name="MakeRootButton">
+           <property name="text">
+            <string>Построить маршрут</string>
+           </property>
+          </widget>
          </item>
         </layout>
        </widget>

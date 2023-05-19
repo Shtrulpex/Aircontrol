@@ -7,10 +7,6 @@ MapController::MapController()
 
     QgsCoordinateReferenceSystem crs("EPSG:4326");
     map->setDestinationCrs(crs);
-
-    //std::pair<double, double> b = LatLongToMerc(50, 50);
-    //this->addControlPoint(QgsPointXY{b.first, b.second});
-    this->addControlPoint(QgsPointXY{180,80}); //180,80
 }
 
 MapController::~MapController()
@@ -56,5 +52,19 @@ GISMapWidget* MapController::GetMap() const
         PointsLayer->deleteFeature(f.id());
 
     PointsLayer->commitChanges();
+ }
 
+ void MapController::MapDrawRoot(std::vector<Point> &root)
+ {
+     RootLayer->startEditing();
+
+     QgsPoint point{10.,10.};
+     QgsFeature feat;
+     feat.setFields(RootLayer->fields(), true);
+     //feat.setAttribute("fid", twoPoints.size() - 1);
+     //feat.setGeometry(QgsGeometry::fromPointXY(point));
+
+     feat.setGeometry(QgsGeometry::fromPolyline({point, QgsPoint{20,20}}));
+     RootLayer->addFeature(feat);
+     RootLayer->commitChanges();
  }

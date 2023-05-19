@@ -105,3 +105,9 @@ void MainWindow::on_listWidget_departureCity_itemClicked(QListWidgetItem *item)
     emit ItemClicked(rect);
     emit DrawPoint(QgsPoint{20., 20.});
 }
+
+void MainWindow::on_MakeRootButton_clicked()
+{
+    std::vector<Point> root; // FIXME take root from query
+    emit DrawRoot(root);
+}
