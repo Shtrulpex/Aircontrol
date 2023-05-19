@@ -1,4 +1,4 @@
-#include "WindowController.h"
+#include "MainWindow.h"
 #include "./ui_mainwindow.h"
 
 #include <qgsmapcanvas.h>
@@ -11,7 +11,7 @@
 #include <iostream>
 #include <vector>
 
-WindowController::WindowController(GISMapWidget* map, QWidget *parent)
+MainWindow::MainWindow(GISMapWidget* map, QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
 {
@@ -22,12 +22,12 @@ WindowController::WindowController(GISMapWidget* map, QWidget *parent)
     this->show();
 }
 
-WindowController::~WindowController()
+MainWindow::~MainWindow()
 {
     delete ui;
 }
 
-QStringList WindowController::ServerCommunication(const QString &text)
+QStringList MainWindow::ServerCommunication(const QString &text)
 {
     AirportQuery p;
     p.name.eng = text.toStdString();//ui->lineEdit_departureCity->text().toStdString();
@@ -51,7 +51,7 @@ QStringList WindowController::ServerCommunication(const QString &text)
     return names;
 }
 
-void WindowController::on_lineEdit_departureCity_textChanged(const QString &arg1)
+void MainWindow::on_lineEdit_departureCity_textChanged(const QString &arg1)
 {
     //QStringList names = ServerCommunication(arg1); !!!!!!!!!!!!
     std::cout << "///////////////////" << std::endl;
@@ -61,7 +61,7 @@ void WindowController::on_lineEdit_departureCity_textChanged(const QString &arg1
     ui->listWidget_departureCity->addItem(arg1);
 }
 
-void WindowController::on_listWidget_departureCity_itemClicked(QListWidgetItem *item)
+void MainWindow::on_listWidget_departureCity_itemClicked(QListWidgetItem *item)
 {
     //Меняем цвет, хотя нафиг надо
     if(item->backgroundColor() == Qt::blue)
@@ -81,3 +81,8 @@ void WindowController::on_listWidget_departureCity_itemClicked(QListWidgetItem *
     emit ItemClicked(rect);
 }
 
+
+void MainWindow::on_lineEdit_plane_textChanged(const QString &arg1)
+{
+
+}

@@ -27,8 +27,8 @@ set(CMAKE_INCLUDE_CURRENT_DIR ON)
 
 add_executable(Aircontrol
     main.cpp
-    WindowController.cpp
-    WindowController.h
+    MainWindow.cpp
+    MainWindow.h
     mainwindow.ui
     GISMapWidget.h
     GISMapWidget.cpp

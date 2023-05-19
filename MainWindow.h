@@ -9,13 +9,13 @@ QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
 QT_END_NAMESPACE
 
-class WindowController : public QMainWindow
+class MainWindow : public QMainWindow
 {
     Q_OBJECT
 
 public:
-    WindowController(GISMapWidget* map, QWidget *parent = nullptr);
-    ~WindowController();
+    MainWindow(GISMapWidget* map, QWidget *parent = nullptr);
+    ~MainWindow();
 
 private slots:
     void on_lineEdit_departureCity_textChanged(const QString &arg1);

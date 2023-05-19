@@ -4,7 +4,7 @@
 #include <QMainWindow>
 
 #include "MapController.h"
-#include "WindowController.h"
+#include "MainWindow.h"
 
 class CentralWidget: public QObject
 {
@@ -15,7 +15,7 @@ public:
 private:
 
     MapController* map_controller = nullptr;
-    WindowController* window_controller = nullptr;
+    MainWindow* window_controller = nullptr;
 };
 
 #endif // CENTRALWIDGET_H
