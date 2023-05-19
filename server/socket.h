@@ -20,9 +20,9 @@ public:
     Socket (std::string ip = "", int port = 0);
 
     Socket            (const Socket&) = default;
-    Socket            (Socket&&)      = default;
+    Socket            (Socket&&)      = delete;
     Socket& operator= (const Socket&) = default;
-    Socket& operator= (Socket&&)      = default;
+    Socket& operator= (Socket&&)      = delete;
    
     bool listen  (int queue_size);
     bool connect (std::string ip = "", int port = 0);
@@ -37,10 +37,10 @@ public:
     template <typename T>
     Socket& operator>> (T& val);
 
+private:
     template <typename T, bool is_class, bool has_iter>
     struct io_helper;
 
-private:
     void reset ();
 
     std::shared_ptr<int> self_fd_ptr;

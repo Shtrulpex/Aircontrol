@@ -6,6 +6,10 @@
 
 #include <qgsrectangle.h> //for zoom
 #include <random>
+#include "server/socket.h"
+#include "server/data_struct.h"
+#include <iostream>
+#include <vector>
 
 WindowController::WindowController(GISMapWidget* map, QWidget *parent)
     : QMainWindow(parent)
@@ -33,11 +37,27 @@ WindowController::~WindowController()
 
 void WindowController::on_lineEdit_departureCity_textChanged(const QString &arg1)
 {
+    AirportQuery p;
+
+    p.name.eng = arg1.toStdString();//ui->lineEdit_departureCity->text().toStdString();
     ui->listWidget_departureCity->clear();
 
+    Socket sock;
+    sock.connect("127.0.0.1", 5433);
+    sock << AIRPORT;
+    sock << p;
+    std::vector<Airport> airs;
+    sock >> airs;
+    sock.close();
+
     QStringList names;
-    names.append("smth");
-    names.append("smth2");
+    for(auto i: airs)
+    {
+        names.append(QString::fromStdString(i.city.eng + " " + i.name.rus));
+        std::cout << i.city.rus << " " << i.name.rus << std::endl;
+    }
+
+    std::cout << "///////////////////" << std::endl;
 
     ui->listWidget_departureCity->addItems(names);
 
