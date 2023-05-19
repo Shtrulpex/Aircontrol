@@ -21,8 +21,18 @@ private slots:
     void on_lineEdit_departureCity_textChanged(const QString &arg1);
     void on_listWidget_departureCity_itemClicked(QListWidgetItem *item);
 
+    void on_lineEdit_plane_textChanged(const QString &arg1);
+
+    void on_lineEdit_arrivalCity_textChanged(const QString &arg1);
+
+    void on_listWidget_plane_itemClicked(QListWidgetItem *item);
+
+    void on_listWidget_arrivalCity_itemClicked(QListWidgetItem *item);
+
 signals:
     void ItemClicked(QgsRectangle rect);
+    void DrawPoint(const QgsPointXY &point);
+
 private: 
     QStringList ServerCommunication(const QString &text);
     Ui::MainWindow *ui;

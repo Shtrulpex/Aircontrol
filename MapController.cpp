@@ -39,3 +39,22 @@ GISMapWidget* MapController::GetMap() const
      map->update();
      map->setExtent(rect);
  }
+
+ void MapController::DrawPoint(const QgsPointXY &point)
+ {
+    addControlPoint(point);
+ }
+
+ void MapController::ClearPoint(const QgsPoint &point) //deletes all points
+ {
+    PointsLayer->startEditing();
+
+    QgsFeature f;
+    QgsFeatureIterator iter = PointsLayer->getFeatures();
+    //PointsLayer->deleteFeature(f[0]);
+    while(iter.nextFeature(f))
+        PointsLayer->deleteFeature(f.id());
+
+    PointsLayer->commitChanges();
+
+ }

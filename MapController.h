@@ -23,6 +23,7 @@ public:
 
 public slots:
     void ScaleToRect(QgsRectangle rect);
+    void DrawPoint(const QgsPointXY &point);
 
 private:
 
@@ -30,6 +31,7 @@ private:
     QgsVectorLayer* PointsLayer = new QgsVectorLayer("Point", "Points", "memory");
 
     void addControlPoint(const QgsPointXY &point);
+    void ClearPoint(const QgsPoint &point);
 };
 
 #endif // MENUCONTROLLER_H

@@ -36,6 +36,8 @@ add_executable(Aircontrol
     MapController.cpp
     CentralWidget.cpp
     CentralWidget.h
+    DataController.h
+    DataController.cpp
 
     ./server/fields_count.hpp
     ./server/getter.hpp

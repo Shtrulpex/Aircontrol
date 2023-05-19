@@ -51,6 +51,8 @@ QStringList MainWindow::ServerCommunication(const QString &text)
     return names;
 }
 
+
+
 void MainWindow::on_lineEdit_departureCity_textChanged(const QString &arg1)
 {
     //QStringList names = ServerCommunication(arg1); !!!!!!!!!!!!
@@ -59,6 +61,28 @@ void MainWindow::on_lineEdit_departureCity_textChanged(const QString &arg1)
     //ui->listWidget_departureCity->addItems(names); !!!!!!!!!!!!
 
     ui->listWidget_departureCity->addItem(arg1);
+}
+
+void MainWindow::on_lineEdit_plane_textChanged(const QString &arg1)
+{
+    ui->listWidget_plane->addItem(arg1);
+}
+
+void MainWindow::on_lineEdit_arrivalCity_textChanged(const QString &arg1)
+{
+    ui->listWidget_arrivalCity->addItem(arg1);
+}
+
+void MainWindow::on_listWidget_plane_itemClicked(QListWidgetItem *item)
+{
+
+}
+
+void MainWindow::on_listWidget_arrivalCity_itemClicked(QListWidgetItem *item)
+{
+
+    const QgsPoint point{0.,0.};
+    emit DrawPoint(point);
 }
 
 void MainWindow::on_listWidget_departureCity_itemClicked(QListWidgetItem *item)
@@ -79,10 +103,5 @@ void MainWindow::on_listWidget_departureCity_itemClicked(QListWidgetItem *item)
 
     QgsRectangle rect(distr(gen), distr(gen), distr(gen), distr(gen));
     emit ItemClicked(rect);
-}
-
-
-void MainWindow::on_lineEdit_plane_textChanged(const QString &arg1)
-{
-
+    emit DrawPoint(QgsPoint{20., 20.});
 }
