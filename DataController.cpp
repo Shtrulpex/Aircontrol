@@ -42,7 +42,7 @@ QStringList DataController::getPlanes(const QString &text)
 
 void DataController::setPlane(const QString &text)
 {
-    laneQuery p;
+    PlaneQuery p;
     p.name.eng = text.toStdString();
 
     Socket sock;

@@ -32,15 +32,15 @@ MainWindow::~MainWindow()
 
 void MainWindow::on_lineEdit_departureCity_textChanged(const QString &arg1)
 {
-    DataController dc;
-    QStringList names = dc.getPlanes(arg1);
+    QStringList names = dc.getAirports(arg1);
     ui->listWidget_departureCity->clear();
     ui->listWidget_departureCity->addItems(names);
 }
 
 void MainWindow::on_lineEdit_plane_textChanged(const QString &arg1)
 {
-    ui->listWidget_plane->addItem(arg1);
+    ui->listWidget_plane->clear();
+    ui->listWidget_plane->addItems(dc.getPlanes(arg1));
 }
 
 void MainWindow::on_lineEdit_arrivalCity_textChanged(const QString &arg1)
