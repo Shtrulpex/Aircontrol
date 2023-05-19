@@ -58,10 +58,33 @@ void DataController::setPlane(const QString &text)
 
 void DataController::setDestination(const QString &text)
 {
+    AirportQuery a;
+    a.name.eng = text.split("/")[0].toStdString();
 
+    Socket sock;
+    sock.connect(ip.toStdString(), port);
+    sock << AIRPORT;
+    sock << a;
+    std::vector<Airport> airs;
+    sock >> airs;
+    sock.close();
+    if(!airs.empty())
+        to = airs[airs.size()-1];
 }
+
 
 void DataController::setStart(const QString &text)
 {
+    AirportQuery a;
+    a.name.eng = text.split("/")[0].toStdString();
 
+    Socket sock;
+    sock.connect(ip.toStdString(), port);
+    sock << AIRPORT;
+    sock << a;
+    std::vector<Airport> airs;
+    sock >> airs;
+    sock.close();
+    if(!airs.empty())
+        from = airs[airs.size()-1];
 }
