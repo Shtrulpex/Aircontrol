@@ -49,9 +49,12 @@ void MainWindow::on_lineEdit_plane_textChanged(const QString &arg1)
 
 void MainWindow::on_lineEdit_arrivalCity_textChanged(const QString &arg1)
 {
-    QStringList cities = dc.getAirports(arg1);
-    ui->listWidget_departureCity->clear();
-    ui->listWidget_arrivalCity->addItems(cities);
+    if(!dc.isEmpty())
+    {
+        QStringList cities = dc.getDestAirports(arg1);
+        ui->listWidget_arrivalCity->clear();
+        ui->listWidget_arrivalCity->addItems(cities);
+    }
 }
 
 void MainWindow::on_listWidget_departureCity_itemClicked(QListWidgetItem *item)
@@ -81,7 +84,7 @@ void MainWindow::on_listWidget_plane_itemClicked(QListWidgetItem *item)
 void MainWindow::on_listWidget_arrivalCity_itemClicked(QListWidgetItem *item)
 {
     dc.setDestination(item->text());
-    Airport start = dc.getStart();
+    Airport start = dc.getDestination();
     QgsPoint point{start.loc.latitude,start.loc.longitude};
     emit DrawPoint(point);
     ui->lineEdit_arrivalCity->setText(item->text());
@@ -91,6 +94,7 @@ void MainWindow::on_listWidget_arrivalCity_itemClicked(QListWidgetItem *item)
 void MainWindow::on_MakeRootButton_clicked()
 {
     //dc.getTransport();
-    std::vector<Point> root; // FIXME take root from query
+
+    std::vector<Point> root = dc.getPath();
     emit DrawRoot(root);
 }

@@ -3,7 +3,7 @@
 MapController::MapController()
 {
     map = new GISMapWidget();
-    map->OpenMap(PointsLayer);
+    map->OpenMap(PointsLayer, RootLayer);
 
     QgsCoordinateReferenceSystem crs("EPSG:4326");
     map->setDestinationCrs(crs);
@@ -57,14 +57,14 @@ GISMapWidget* MapController::GetMap() const
 
  void MapController::MapDrawRoot(std::vector<Point> &root)
  {
-     PointsLayer->startEditing();
+     RootLayer->startEditing();
      QgsPointXY point{20.0, 20.0};
      QgsFeature feat;
-     feat.setFields(PointsLayer->fields(), true);
+     feat.setFields(RootLayer->fields(), true);
              //feat.setAttribute("fid", twoPoints.size() - 1);
      feat.setGeometry(QgsGeometry::fromPointXY(point));
 
      feat.setGeometry(QgsGeometry::fromPolylineXY({point, QgsPointXY{0,0}, QgsPointXY{50,0}}));
-     PointsLayer->addFeature(feat);
-     PointsLayer->commitChanges();
+     RootLayer->addFeature(feat);
+     RootLayer->commitChanges();
  }
