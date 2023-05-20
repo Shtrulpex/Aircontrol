@@ -93,8 +93,6 @@ void MainWindow::on_listWidget_arrivalCity_itemClicked(QListWidgetItem *item)
 
 void MainWindow::on_MakeRootButton_clicked()
 {
-    //dc.getTransport();
-
     std::vector<Point> root = dc.getPath();
     emit DrawRoot(root);
 }

@@ -44,9 +44,5 @@ private:
     QStringList ServerCommunication(const QString &text);
     Ui::MainWindow *ui;
     DataController dc;
-
-
-    //void lineEdit_plane_changed(const QString &arg1);
-
 };
 #endif // MAINWINDOW_H
