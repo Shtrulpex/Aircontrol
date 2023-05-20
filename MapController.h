@@ -37,6 +37,7 @@ private:
 
     void addControlPoint(const QgsPointXY &point, QgsVectorLayer* PointsLayer);
     void ClearPoint(const QgsPointXY &point, bool choose);
+    void clearRoot();
 };
 
 #endif // MENUCONTROLLER_H

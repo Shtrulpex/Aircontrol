@@ -49,6 +49,7 @@ GISMapWidget* MapController::GetMap() const
 
  void MapController::ClearPoint(const QgsPointXY &point, bool choose) //deletes all points
  {
+    clearRoot();
     QgsVectorLayer* PointsLayer;
     if(choose)
         PointsLayer = PointLayer1;
@@ -64,8 +65,21 @@ GISMapWidget* MapController::GetMap() const
     PointsLayer->commitChanges();
  }
 
+ void MapController::clearRoot()
+ {
+    RootLayer->startEditing();
+
+    QgsFeature f;
+    QgsFeatureIterator iter = RootLayer->getFeatures();
+    while(iter.nextFeature(f))
+        RootLayer->deleteFeature(f.id());
+
+    RootLayer->commitChanges();
+ }
+
  void MapController::MapDrawRoot(std::vector<Point> &root)
  {
+     clearRoot();
      RootLayer->startEditing();
      QgsPolylineXY polyline;
      for(auto i:root)
