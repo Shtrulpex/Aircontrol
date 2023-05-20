@@ -88,3 +88,41 @@ void DataController::setStart(const QString &text)
     if(!airs.empty())
         from = airs[airs.size()-1];
 }
+
+
+QStringList DataController::getDestAirports(const QString &text)
+{
+    AirportQuery a;
+    a.name.eng = text.toStdString();
+
+    Socket sock;
+    sock.connect(ip.toStdString(), port);
+    sock << REACHABLE;
+    sock << a << from << plane;
+    std::vector<Airport> airs;
+    sock >> airs;
+    sock.close();
+
+    QStringList names;
+    for(auto i: airs)
+        names.append(QString::fromStdString(i.name.eng + "/" + i.city.rus));
+
+    return names;
+}
+
+bool DataController::isEmpty()
+{
+    return from.name.eng.empty() || plane.name.eng.empty();
+}
+
+std::vector<Point> DataController::getPath()
+{
+    Socket sock;
+    sock.connect(ip.toStdString(), port);
+    sock << PATH_2D;
+    sock << from << to;
+    std::vector<Point> path;
+    sock >> path;
+
+    return path;
+}
