@@ -4,7 +4,6 @@ MapController::MapController()
 {
     map = new GISMapWidget();
     map->OpenMap(PointsLayer);
-    map->OpenMap(RootLayer);
 
     QgsCoordinateReferenceSystem crs("EPSG:4326");
     map->setDestinationCrs(crs);

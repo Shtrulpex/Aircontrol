@@ -49,9 +49,27 @@ void MainWindow::on_lineEdit_plane_textChanged(const QString &arg1)
 
 void MainWindow::on_lineEdit_arrivalCity_textChanged(const QString &arg1)
 {
-    //QStringList cities = dc.getDestination();
-    //ui->listWidget_departureCity->clear();
-    //ui->listWidget_arrivalCity->addItems(cities);
+    QStringList cities = dc.getAirports(arg1);
+    ui->listWidget_departureCity->clear();
+    ui->listWidget_arrivalCity->addItems(cities);
+}
+
+void MainWindow::on_listWidget_departureCity_itemClicked(QListWidgetItem *item)
+{
+    dc.setStart(item->text());
+    //std::cout << item->text().toStdString() << "^(((((((((((((((((((((((((((((((" << std::endl;
+    Airport start = dc.getStart();
+    // generating random coordinates
+    /*std::random_device rd; // obtain a random number from hardware
+    std::mt19937 gen(rd()); // seed the generator
+    std::uniform_int_distribution<> distr(-50, 50); // define the range
+
+    QgsRectangle rect(distr(gen), distr(gen), distr(gen), distr(gen));
+
+*/  //emit ItemClicked(rect);
+
+    emit DrawPoint(QgsPoint{start.loc.latitude, start.loc.longitude});
+    ui->lineEdit_departureCity->setText(item->text());
 }
 
 void MainWindow::on_listWidget_plane_itemClicked(QListWidgetItem *item)
@@ -63,27 +81,16 @@ void MainWindow::on_listWidget_plane_itemClicked(QListWidgetItem *item)
 void MainWindow::on_listWidget_arrivalCity_itemClicked(QListWidgetItem *item)
 {
     dc.setDestination(item->text());
-    const QgsPoint point{0.,0.};
+    Airport start = dc.getStart();
+    QgsPoint point{start.loc.latitude,start.loc.longitude};
     emit DrawPoint(point);
+    ui->lineEdit_arrivalCity->setText(item->text());
 }
 
-void MainWindow::on_listWidget_departureCity_itemClicked(QListWidgetItem *item)
-{
-    dc.setStart(item->text());
-
-
-    // generating random coordinates
-    std::random_device rd; // obtain a random number from hardware
-    std::mt19937 gen(rd()); // seed the generator
-    std::uniform_int_distribution<> distr(-50, 50); // define the range
-
-    QgsRectangle rect(distr(gen), distr(gen), distr(gen), distr(gen));
-    //emit ItemClicked(rect);
-    emit DrawPoint(QgsPoint{20., 20.});
-}
 
 void MainWindow::on_MakeRootButton_clicked()
 {
+    //dc.getTransport();
     std::vector<Point> root; // FIXME take root from query
     emit DrawRoot(root);
 }
