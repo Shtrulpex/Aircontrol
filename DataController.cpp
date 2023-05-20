@@ -114,3 +114,15 @@ bool DataController::isEmpty()
 {
     return from.name.eng.empty() || plane.name.eng.empty();
 }
+
+std::vector<Point> DataController::getPath()
+{
+    Socket sock;
+    sock.connect(ip.toStdString(), port);
+    sock << PATH_2D;
+    sock << from << to;
+    std::vector<Point> path;
+    sock >> path;
+
+    return path;
+}

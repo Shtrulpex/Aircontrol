@@ -26,6 +26,7 @@ public:
     void setStart(const QString& text);
     QStringList getDestAirports(const QString& text);
     bool isEmpty();
+    std::vector<Point> getPath();
 };
 
 #endif // DATACONTROLLER_H
