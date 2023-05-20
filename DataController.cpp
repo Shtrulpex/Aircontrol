@@ -3,7 +3,7 @@
 QStringList DataController::getAirports(const QString &text)
 {
     AirportQuery p;
-    p.name.eng = text.toStdString();
+    p.name.rus = text.toStdString();
 
     Socket sock;
     sock.connect(ip.toStdString(), port);
@@ -15,7 +15,7 @@ QStringList DataController::getAirports(const QString &text)
 
     QStringList names;
     for(auto i: airs)
-        names.append(QString::fromStdString(i.name.eng + "/" + i.city.rus));
+        names.append(QString::fromStdString(i.name.rus + "/" + i.city.rus));
 
     return names;
 }
@@ -23,7 +23,7 @@ QStringList DataController::getAirports(const QString &text)
 QStringList DataController::getPlanes(const QString &text)
 {
     PlaneQuery p;
-    p.name.eng = text.toStdString();
+    p.name.rus = text.toStdString();
 
     Socket sock;
     sock.connect(ip.toStdString(), port);
@@ -35,7 +35,7 @@ QStringList DataController::getPlanes(const QString &text)
 
     QStringList names;
     for(auto i: planes)
-        names.append(QString::fromStdString(i.name.eng));
+        names.append(QString::fromStdString(i.name.rus));
 
     return names;
 }
@@ -43,7 +43,7 @@ QStringList DataController::getPlanes(const QString &text)
 void DataController::setPlane(const QString &text)
 {
     PlaneQuery p;
-    p.name.eng = text.toStdString();
+    p.name.rus = text.toStdString();
 
     Socket sock;
     sock.connect(ip.toStdString(), port);
@@ -59,7 +59,7 @@ void DataController::setPlane(const QString &text)
 void DataController::setDestination(const QString &text)
 {
     AirportQuery a;
-    a.name.eng = text.split("/")[0].toStdString();
+    a.name.rus = text.split("/")[0].toStdString();
 
     Socket sock;
     sock.connect(ip.toStdString(), port);
@@ -76,7 +76,7 @@ void DataController::setDestination(const QString &text)
 void DataController::setStart(const QString &text)
 {
     AirportQuery a;
-    a.name.eng = text.split("/")[0].toStdString();
+    a.name.rus = text.split("/")[0].toStdString();
 
     Socket sock;
     sock.connect(ip.toStdString(), port);
@@ -93,7 +93,7 @@ void DataController::setStart(const QString &text)
 QStringList DataController::getDestAirports(const QString &text)
 {
     AirportQuery a;
-    a.name.eng = text.toStdString();
+    a.name.rus = text.toStdString();
 
     Socket sock;
     sock.connect(ip.toStdString(), port);
@@ -105,14 +105,14 @@ QStringList DataController::getDestAirports(const QString &text)
 
     QStringList names;
     for(auto i: airs)
-        names.append(QString::fromStdString(i.name.eng + "/" + i.city.rus));
+        names.append(QString::fromStdString(i.name.rus + "/" + i.city.rus));
 
     return names;
 }
 
 bool DataController::isEmpty()
 {
-    return from.name.eng.empty() || plane.name.eng.empty();
+    return from.name.rus.empty() || plane.name.rus.empty();
 }
 
 std::vector<Point> DataController::getPath()

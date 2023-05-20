@@ -19,9 +19,9 @@ GISMapWidget::~GISMapWidget()
     delete earthLayer;
 }
 
-void GISMapWidget::OpenMap(QgsVectorLayer* controlPointsLayer, QgsVectorLayer* RootLayer)
+void GISMapWidget::OpenMap(QgsVectorLayer* controlPointLayer1, QgsVectorLayer* controlPointLayer2, QgsVectorLayer* RootLayer)
 {
-    setLayers({controlPointsLayer, RootLayer, earthLayer});
+    setLayers({controlPointLayer2, controlPointLayer1, RootLayer, earthLayer});
     setExtent(earthLayer->extent());
     QgsCoordinateReferenceSystem crs("EPSG:4326");
     setDestinationCrs(crs);

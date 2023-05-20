@@ -37,7 +37,7 @@ private slots:
 
 signals:
     void ItemClicked(QgsRectangle rect);
-    void DrawPoint(const QgsPointXY &point);
+    void DrawPoint(const QgsPointXY &point, bool choose);
     void DrawRoot(std::vector<Point>& root);
 
 private: 

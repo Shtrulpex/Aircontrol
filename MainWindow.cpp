@@ -71,7 +71,7 @@ void MainWindow::on_listWidget_departureCity_itemClicked(QListWidgetItem *item)
 
 */  //emit ItemClicked(rect);
 
-    emit DrawPoint(QgsPoint{start.loc.longitude, start.loc.latitude});
+    emit DrawPoint(QgsPoint{start.loc.longitude, start.loc.latitude}, true);
     ui->lineEdit_departureCity->setText(item->text());
 }
 
@@ -86,7 +86,7 @@ void MainWindow::on_listWidget_arrivalCity_itemClicked(QListWidgetItem *item)
     dc.setDestination(item->text());
     Airport start = dc.getDestination();
     QgsPoint point{start.loc.longitude,start.loc.latitude};
-    emit DrawPoint(point);
+    emit DrawPoint(point, false);
     ui->lineEdit_arrivalCity->setText(item->text());
 }
 

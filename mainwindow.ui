@@ -20,16 +20,9 @@
      <x>0</x>
      <y>0</y>
      <width>800</width>
-     <height>22</height>
+     <height>41</height>
     </rect>
    </property>
-   <widget class="QMenu" name="menu">
-    <property name="title">
-     <string>Меню</string>
-    </property>
-    <addaction name="actionOpen"/>
-   </widget>
-   <addaction name="menu"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
   <widget class="QDockWidget" name="dockWidget">
@@ -54,12 +47,12 @@
          <rect>
           <x>0</x>
           <y>0</y>
-          <width>276</width>
-          <height>426</height>
+          <width>318</width>
+          <height>274</height>
          </rect>
         </property>
         <attribute name="label">
-         <string>Город отправления</string>
+         <string>Аэропорт отправления</string>
         </attribute>
         <layout class="QVBoxLayout" name="verticalLayout_2">
          <item>
@@ -83,8 +76,8 @@
          <rect>
           <x>0</x>
           <y>0</y>
-          <width>276</width>
-          <height>426</height>
+          <width>318</width>
+          <height>274</height>
          </rect>
         </property>
         <attribute name="label">
@@ -112,12 +105,12 @@
          <rect>
           <x>0</x>
           <y>0</y>
-          <width>276</width>
-          <height>426</height>
+          <width>318</width>
+          <height>296</height>
          </rect>
         </property>
         <attribute name="label">
-         <string>Город прибытия</string>
+         <string>Аэропорт прибытия</string>
         </attribute>
         <layout class="QVBoxLayout" name="verticalLayout_5">
          <item>

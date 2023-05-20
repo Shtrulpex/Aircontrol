@@ -3,7 +3,7 @@
 MapController::MapController()
 {
     map = new GISMapWidget();
-    map->OpenMap(PointsLayer, RootLayer);
+    map->OpenMap(PointLayer1, RootLayer, PointLayer2);
 
     QgsCoordinateReferenceSystem crs("EPSG:4326");
     map->setDestinationCrs(crs);
@@ -12,11 +12,12 @@ MapController::MapController()
 MapController::~MapController()
 {
     delete map;
-    delete PointsLayer;
+    delete PointLayer1;
+    delete PointLayer2;
     delete RootLayer;
 }
 
-void MapController::addControlPoint(const QgsPointXY &point)
+void MapController::addControlPoint(const QgsPointXY &point, QgsVectorLayer* PointsLayer)
 {
         PointsLayer->startEditing();
 
@@ -37,18 +38,26 @@ GISMapWidget* MapController::GetMap() const
      map->setExtent(rect);
  }
 
- void MapController::DrawPoint(const QgsPointXY &point)
+ void MapController::DrawPoint(const QgsPointXY &point, bool choose)
  {
-    addControlPoint(point);
+    ClearPoint(point, choose);
+    if(choose)
+        addControlPoint(point, PointLayer1);
+    else
+        addControlPoint(point, PointLayer2);
  }
 
- void MapController::ClearPoint(const QgsPoint &point) //deletes all points
+ void MapController::ClearPoint(const QgsPointXY &point, bool choose) //deletes all points
  {
+    QgsVectorLayer* PointsLayer;
+    if(choose)
+        PointsLayer = PointLayer1;
+    else
+        PointsLayer = PointLayer2;
     PointsLayer->startEditing();
 
     QgsFeature f;
     QgsFeatureIterator iter = PointsLayer->getFeatures();
-    //PointsLayer->deleteFeature(f[0]);
     while(iter.nextFeature(f))
         PointsLayer->deleteFeature(f.id());
 

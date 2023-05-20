@@ -25,17 +25,18 @@ public:
 
 public slots:
     void ScaleToRect(QgsRectangle rect);
-    void DrawPoint(const QgsPointXY &point);
+    void DrawPoint(const QgsPointXY &point, bool choose);
     void MapDrawRoot(std::vector<Point>& root);
 
 private:
 
     GISMapWidget* map = nullptr;
-    QgsVectorLayer* PointsLayer = new QgsVectorLayer("Point", "Points", "memory");
+    QgsVectorLayer* PointLayer1 = new QgsVectorLayer("Point", "Points", "memory");
+    QgsVectorLayer* PointLayer2 = new QgsVectorLayer("Point", "Points", "memory");
     QgsVectorLayer* RootLayer = new QgsVectorLayer("linestring", "line", "memory");
 
-    void addControlPoint(const QgsPointXY &point);
-    void ClearPoint(const QgsPoint &point);
+    void addControlPoint(const QgsPointXY &point, QgsVectorLayer* PointsLayer);
+    void ClearPoint(const QgsPointXY &point, bool choose);
 };
 
 #endif // MENUCONTROLLER_H
